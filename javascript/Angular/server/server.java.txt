@@ -1,0 +1,29 @@
+/**
+ * 测试返回json
+ * @param request
+ * @return
+ */
+@ResponseBody
+@RequestMapping(value = "json")
+public Map<String, Object> json(HttpServletRequest request) {
+	Map<String, Object> map = new HashMap<>();
+	UserEntity g = new UserEntity();
+	g.setName("guopanbo");
+	g.setPhoneNo("18500087880");
+	map.put("g", g);
+	UserEntity y = new UserEntity();
+	y.setName("yangzhengyu");
+	y.setPhoneNo("11111");
+	map.put("y", y);
+	return map;
+}
+
+/**
+ * 测试angular
+ * @param request
+ * @return
+ */
+@RequestMapping(value = "angular", method = RequestMethod.GET)
+public ModelAndView angular(HttpServletRequest request) {
+	return new ModelAndView("testAngular");
+}
