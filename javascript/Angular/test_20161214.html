@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="" data-ng-init="
+	nnames=[{name:'Janna', age:'2'}, {name:'guopanbo', age:'18'}, {name:'yangzhengyu', age:'17'}];
+	names=['a','b','c'];
+	firstName='abcv';
+	a=5;
+	b=10;
+	person={name:'guopanbo'};
+	arr=[1,2,3];
+	num=1;
+	price=5;">
+ 	<p>name1 : <input type="text" ng-model="name"></p>
+	<p>name2 : <input type="text" ng-model="name"></p>
+ 	<h1>Hello {{name|lowercase}}</h1>
+	<p>age:<input type="text" ng-model="age" value="<a>111</a>"/></p>
+	<h1>age: {{age}}</h1>
+	<p>password : <input type="password" ng-model="pw"></p>
+ 	<h1>Hello {{pw}}</h1>
+	<h1 data-ng-bind="firstName"></h1>
+	<h1>5 + 5 = {{5 + 5}}</h1>
+	<h1>{{a < b}}</h1>
+	<h1 ng-bind="a * b"></h1>
+	<h1>{{person.name}}</h1>
+	<h1 ng-bind="person.name + ' ' + firstName"></h1>
+	<h1>{{arr[1]}}</h1>
+	<h1>{{nnames}}</h1>
+	<h1>{{person}}</h1>
+	<h1 ng-bind="arr[0]"></h1>
+	<h1>{{arr}}</h1>
+	num: <input type="text" ng-model="num"/>
+	price: <input type="text" ng-model="price"/>
+	money: {{(num * price) | currency}}
+	<ul>
+		<li ng-repeat="x in names">
+		{{x}}
+	</ul>
+	<ul>
+		<li ng-repeat="nx in nnames | orderBy:'age'">
+		{{(nx.name | uppercase) + ', ' + nx.age}}
+	</ul>
+</div>
+
+
+<!--
+<form ng-app="" name="myForm">
+	email : <input type="email" name="myEmail" ng-model="myEmail" required>
+	<span ng-show="myForm.myEmail.$error.email">email error!</span>
+	<h1>status</h1>
+	{{myForm.myEmail.$valid}}
+	{{myForm.myEmail.$dirty}}
+	{{myForm.myEmail.$touched}}
+</form>
+-->
+
+<!--
+<div ng-app="myApp" ng-controller="myCtrl">
+	first: <input type="text" ng-model="firstName"/>
+	last: <input type="text" ng-model="lastName"/>
+	<h1>name : {{firstName + " " + lastName}}</h1>
+	<a-b></a-b>
+	<div a-b></div>
+	<div class="runoob-directive"></div>
+	<h1>{{name}}</h1>
+	<h1>{{fullname()}}</h1>
+</div>
+-->
+</body>
+</html>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope) {
+		$scope.firstName = 'guo';
+		$scope.lastName = 'panbo';
+		$scope.name = 'guopanbo';
+		$scope.fullname = function() {
+			return $scope.firstName + ' ' + $scope.lastName;
+		}
+	});
+	app.directive("aB", function() {
+		return {
+			template : "<h1>123413aadsf</h1>"
+		};
+	});
+	app.directive("runoobDirective", function() {
+		return {
+			restrict : "C",
+			template : "<h1>111aaa</h1>"
+		};
+	});
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Janna</title>
+</head>
+<body ng-app="routeDemo">
+	<script type="text/ng-template" id="index.html">
+		<h1>Home</h1>
+	</script>
+	<script type="text/ng-template" id="about.html">
+		<h1>About</h1>
+	</script>
+	<div>
+		<a href="#/">Home</a>
+		<a href="#/about">About</a>
+		<a href="#/other">Other</a>
+	</div>
+	<div ng-view></div>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+	<script>
+		angular.module('routeDemo', ['ngRoute'])
+			.controller('ctrl1', function($scope, $route) {
+				$scope.route = $route;
+			})
+			.controller('ctrl2', function($scope, $route) {
+				$scope.route = $route;
+			})
+			.config(['$routeProvider', function($routeProvider) {
+				$routeProvider
+					.when('/', {templateUrl: 'index.html', controller: 'ctrl1'})
+					.when('/about', {templateUrl: 'about.html', controller: 'ctrl2'})
+					.otherwise({redirectTo: '/'});
+			}]);
+	</script>
+</body>
+</html>

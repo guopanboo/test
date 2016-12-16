@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Janna</title>
+	<style>
+		table, th , td {
+		  border: 1px solid grey;
+		  border-collapse: collapse;
+		  padding: 5px;
+		}
+		table tr:nth-child(odd) {
+		  background-color: #f1f1f1;
+		}
+		table tr:nth-child(even) {
+		  background-color: #ffffff;
+		}
+	</style>
+</head>
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<h1>{{test}}</h1>
+		<h1>{{names}}</h1>
+		<select ng-model="selectedName" ng-options="n for n in names"></select>
+		<h1>{{selectedName}}</h1>
+		<select>
+			<option ng-repeat="x in names">{{x}}</option>
+		</select>
+		<select ng-model="selectMap" ng-options="x for (x, n) in map">
+			<option value="">-</option>
+		</select>
+		<h1>{{selectMap}}</h1>
+		<select ng-model="selectObj" ng-options="x for (x, n) in obj">
+			<option value="">-</option>
+		</select>
+		<h1>{{selectObj.x + ' ' + selectObj.y}}</h1>
+		<table>
+
+			<tr ng-repeat="x in tabs | orderBy:'age'">
+				<td>{{$index + 1}}</td>
+				<td ng-if="$odd" style="background-color:green">{{x.name}}</td>
+				<td ng-if="$even">{{x.name | uppercase}}</td>
+				<td ng-if="$even" style="background-color:blue">{{x.age}}</td>
+				<td ng-if="$odd">{{x.age}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {
+			$scope.test = 'Test';
+			$scope.names = ['guopanbo', 'yangzhengyu', 'x'];
+			$scope.map = {
+				a : 'A',
+				b : 'B',
+				c : 'C'
+			};
+			$scope.obj = {
+				a : {x:'A', y:'a'},
+				b : {x:'B', y:'b'},
+				c : {x:'C', y:'c'}
+			};
+			$scope.tabs = [
+				{name:'guopanbo', age:2},
+				{name:'yangzhengyu', age:3},
+				{name:'janna', age:1}
+			];
+		});
+	</script>
+</body>
+</html>
