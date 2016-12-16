@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="myApp" ng-controller="myCtrl">
+			<h1>{{myUrl}}</h1>
+			<div ng-bind="resp"></div>
+			<h1>{{curTime}}</h1>
+			<h1>{{hex}}</h1>
+			<h1>{{255 | hexFilter}}</h1>
+			<ul>
+				<li ng-repeat="xx in arr">{{xx | hexFilter}}</li>
+			</ul>
+		</div>
+		<script>
+			var app = angular.module('myApp', []);
+			app.service('hexFomat', function() {
+				this.format = function(x) {
+					return x.toString(16);
+				}
+			});
+			app.filter('hexFilter', function(hexFomat) {
+				return function(n) {
+					return hexFomat.format(n);
+				};
+			});
+			app.controller('myCtrl', function($scope, $location, $http, $timeout, $interval, hexFomat) {
+				//$scope.val = 255;
+				$scope.arr = [255, 256, 257];
+				$scope.myUrl = $location.absUrl();
+				/*$http.get('test_server_20161215.html').then(function(response) {
+					$scope.resp = response.data;
+				});*/
+				$timeout(function() {
+					$scope.myUrl = '1';
+				}, 1000); 
+				$interval(function() {
+					$scope.curTime = new Date().toLocaleTimeString();
+				}, 1000);
+				$scope.hex = hexFomat.format(10);
+			});
+		</script>
+	</body>
+</html>
