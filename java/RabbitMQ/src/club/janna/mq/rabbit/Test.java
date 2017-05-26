@@ -20,6 +20,13 @@ public class Test {
 		}
 		
 		try {
+			Thread.sleep(5 * 1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
 			producer.close();
 			consumer1.close();
 			consumer2.close();
