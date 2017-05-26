@@ -20,10 +20,10 @@ public abstract class RabbitMQProvider {
         ConnectionFactory factory = new ConnectionFactory();
     
         //hostname of your rabbitmq server
-        factory.setHost("localhost");
+        factory.setHost("node1");
         factory.setPort(5672);
-        factory.setUsername("guest");
-        factory.setPassword("guest");
+        factory.setUsername("test");
+        factory.setPassword("test");
 	
         try {
         		//getting a connection

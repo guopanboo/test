@@ -9,8 +9,11 @@ import com.rabbitmq.client.ShutdownSignalException;
 
 public class Consumer extends RabbitMQProvider implements Runnable, com.rabbitmq.client.Consumer {
 
-	public Consumer(String name) {
+	private String cname;
+	
+	public Consumer(String name, String cname) {
 		super(name);
+		this.cname = cname;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -39,7 +42,7 @@ public class Consumer extends RabbitMQProvider implements Runnable, com.rabbitmq
 		if(serlz != null && serlz instanceof Money) {
 			Money money = (Money)serlz;
 			if(money != null)
-				System.out.println("id: " + money.getId() + " | value: " + money.getValue());
+				System.out.println(cname + " | id: " + money.getId() + " | value: " + money.getValue());
 		}
 	}
 
