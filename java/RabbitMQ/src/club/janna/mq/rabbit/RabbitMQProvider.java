@@ -23,7 +23,7 @@ public abstract class RabbitMQProvider {
         factory.setHost("localhost");
         factory.setPort(5672);
         factory.setUsername("guopanbo");
-        factory.setPassword("guopanbo");
+        factory.setPassword("guopanbo"); 
 	
         try {
         		//getting a connection
