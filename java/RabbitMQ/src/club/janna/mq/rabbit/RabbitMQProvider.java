@@ -32,7 +32,7 @@ public abstract class RabbitMQProvider {
 			channel = connection.createChannel();
 			//declaring a queue for this channel. If queue does not exist,
 	        //it will be created on the server.
-			channel.queueDeclare(name, false, false, false, null);
+			channel.queueDeclare(name, true, false, false, null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,15 +42,23 @@ public abstract class RabbitMQProvider {
 		}
     }
     
-    public void close() throws IOException{
+    public void close() {
     		if(channel != null)
 	        try {
 				this.channel.close();
 			} catch (TimeoutException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
     		if(connection != null)
-    			this.connection.close();
+			try {
+				this.connection.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     }
 }

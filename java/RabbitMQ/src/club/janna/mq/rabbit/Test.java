@@ -1,6 +1,5 @@
 package club.janna.mq.rabbit;
 
-import java.io.IOException;
 
 public class Test {
 	
@@ -20,20 +19,15 @@ public class Test {
 		}
 		
 		try {
-			Thread.sleep(5 * 1000);
+			Thread.sleep(6 * 1000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		try {
-			producer.close();
-			consumer1.close();
-			consumer2.close();
-			consumer3.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		producer.close();
+		consumer1.close();
+		consumer2.close();
+		consumer3.close();
 	}
 }
